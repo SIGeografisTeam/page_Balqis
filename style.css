@@ -301,4 +301,14 @@ input, select {
 }
 
 
-
+.footer-logo-icon {
+    background-color: #AB886D; /* Hijau */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    display: inline-block;
+    width: max-content; /* Menyesuaikan lebar dengan teks */
+}
