@@ -313,6 +313,12 @@ input, select {
     width: max-content; /* Menyesuaikan lebar dengan teks */
 }
 
+.button-container {
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+}
+
 .whatsapp-button {
     display: flex;
     align-items: center;
