@@ -312,3 +312,19 @@ input, select {
     display: inline-block;
     width: max-content; /* Menyesuaikan lebar dengan teks */
 }
+
+.whatsapp-button {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background-color: #25D366; /* Hijau WhatsApp */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    width: max-content;
+}
+
+.whatsapp-button i {
+    margin-right: 8px; /* Jarak antara ikon dan teks */
+}
