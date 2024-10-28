@@ -16,7 +16,7 @@ body {
 .header {
     width: 100%;
     background-color: #ffffff;
-    padding: 10px 20px;
+    padding: 20px;
     text-align: center;
     border-radius: 20px;
     /* Membuat sisi header membulat */
@@ -279,3 +279,26 @@ input, select {
     padding: 8px;
     outline-color: #84B8C6;
 }
+
+.payment-method label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.payment-method select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.payment-method select:hover {
+    background-color: #e0e0e0;
+    border-color: #888;
+}
+
+
+
