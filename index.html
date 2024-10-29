@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasakan Ambu</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="./bg/favicon.ico" type="image/x-icon">
 
     <!-- Meta Tags for Open Graph -->
     <meta property="og:title" content="Pasakan Ambu" />
-    <meta property="og:description" content="Nikmati berbagai pilihan menu makanan lezat di Pasakan Ambu. Mulai dari Jengkol Rendang, Babat Serundeng, dan masih banyak lagi!" />
+    <meta property="og:description"
+        content="Nikmati berbagai pilihan menu makanan lezat di Pasakan Ambu. Mulai dari Jengkol Rendang, Babat Serundeng, dan masih banyak lagi!" />
     <meta property="og:image" content="./bg/gambar.jpg" />
     <meta property="og:url" content="./page" />
     <meta property="og:type" content="website" />
@@ -21,18 +23,24 @@
     <!-- Meta Tags for Twitter (Optional) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pasakan Ambu">
-    <meta name="twitter:description" content="Nikmati berbagai pilihan menu makanan lezat di Pasakan Ambu. Mulai dari Jengkol Rendang, Babat Serundeng, dan masih banyak lagi!">
+    <meta name="twitter:description"
+        content="Nikmati berbagai pilihan menu makanan lezat di Pasakan Ambu. Mulai dari Jengkol Rendang, Babat Serundeng, dan masih banyak lagi!">
     <meta name="twitter:image" content="./page/bg/gambar.jpg">
 </head>
+
 <body>
     <header class="header">
         <img src="./bg/banner.jpg" alt="Banner" class="banner-image">
     </header>
     <main class="main-container">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cari menu...">
+            <button id="searchButton">Cari</button>
+        </div>
         <h2>Form Pemesanan</h2>
         <div id="menuGrid" class="menu-grid">
             <!-- Elemen menu akan diisi oleh JavaScript -->
-        </div>        
+        </div>
         <div class="total-container">
             <h2>Total: Rp <span id="totalPrice">0</span></h2>
             <div class="payment-method">
@@ -48,7 +56,7 @@
                 <a id="whatsappLink" href="#" class="whatsapp-button" target="_blank">
                     <i class="fab fa-whatsapp"></i> Kirim Pesanan via WhatsApp
                 </a>
-            </div>      
+            </div>
         </div>
     </main>
 
@@ -75,8 +83,9 @@
             <p>Isi Menu dan harga merupakan tangung jawab tenant | <a href="#">Laporkan Penyalahgunaan</a></p>
         </div>
     </footer>
-    
+
 
     <script src="/script.js" type="module"></script>
 </body>
+
 </html>

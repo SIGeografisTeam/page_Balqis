@@ -334,3 +334,34 @@ input, select {
 .whatsapp-button i {
     margin-right: 8px; /* Jarak antara ikon dan teks */
 }
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#searchInput {
+    padding: 7px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    width: 300px; 
+}
+
+#searchButton {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #DE8F5F;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    outline: none;
+}
+
+#searchButton:hover {
+    background-color: #FFCF9D;
+}
