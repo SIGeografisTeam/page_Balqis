@@ -1,6 +1,8 @@
 import { postJSON } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js';
 import { onClick } from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js';
 
+const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 7750878347\nNedi Sopian";
+
 onClick('buttonsimpaninfouser', saveUserInfo);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,8 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
             window.menuItems = data; 
             renderMenu(menuItems);
 
-            document.getElementById('searchButton').addEventListener('click', searchMenu);
-            document.getElementById('whatsappLink').addEventListener('click', handleOrderSubmission);
+            const searchButton = document.getElementById('searchButton');
+            const whatsappLink = document.getElementById('whatsappLink');
+
+            if (searchButton) searchButton.addEventListener('click', searchMenu);
+            if (whatsappLink) whatsappLink.addEventListener('click', handleOrderSubmission);
         })
         .catch(error => console.error('Error loading menu:', error));
 });
@@ -58,7 +63,7 @@ function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = `${cname}=${cvalue};${expires};path=/`;
 }
 
 function getCookie(cname) {
@@ -106,7 +111,6 @@ function calculateTotal() {
     const inputs = document.querySelectorAll('input[type="number"]');
     let total = 0;
     let orders = [];
-    const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 7750878347\nNedi Sopian";
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
     const userAddress = getCookie("address");
@@ -141,7 +145,6 @@ function handleOrderSubmission(event) {
     event.preventDefault();
 
     const paymentMethod = document.getElementById('paymentMethod').value;
-    const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 2820321726\nKiki Santi Noviana";
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
     const userAddress = getCookie("address");
@@ -186,7 +189,6 @@ function handleOrderSubmission(event) {
         console.error('Error in POST request:', error);
     });
 }
-
 
 function getLastPathSegment() {
     // Ambil pathname dari URL
