@@ -302,7 +302,7 @@ input, select {
 
 
 .footer-logo-icon {
-    background-color: #AB886D; /* Hijau */
+    background-color: #DE8F5F; 
     color: #fff;
     padding: 5px 10px;
     border-radius: 12px;
@@ -364,4 +364,13 @@ input, select {
 
 #searchButton:hover {
     background-color: #FFCF9D;
+}
+
+.menu-grid .menu-item {
+    transition: transform 0.3s ease; /* Menambahkan efek transisi untuk animasi yang lebih halus */
+}
+
+.menu-grid .menu-item:hover {
+    transform: scale(1.05); /* Memperbesar elemen sedikit saat di-hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan efek bayangan untuk menonjolkan elemen */
 }
