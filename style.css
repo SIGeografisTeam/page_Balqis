@@ -374,3 +374,9 @@ input, select {
     transform: scale(1.05); /* Memperbesar elemen sedikit saat di-hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan efek bayangan untuk menonjolkan elemen */
 }
+
+/* Non-hover effect for search results */
+.search-result:hover {
+    transform: none;
+    box-shadow: none;
+}
