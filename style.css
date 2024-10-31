@@ -279,19 +279,47 @@ input, select {
     outline-color: #84B8C6;
 }
 
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.order-summary {
+    text-align: center;
+    margin-bottom: 2em; /* Jarak antara Pesanan Anda dan Metode Pembayaran */
+}
+
+.payment-method {
+    margin: 1em 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    display: flex; /* Mengubah ke flexbox */
+    align-items: center; /* Vertikal center */
+    flex-direction: column; /* Atur sebagai kolom */
+    text-align: center;
+    gap: 1em;
+}
+
 .payment-method label {
     font-size: 1rem;
     color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 .payment-method select {
-    padding: 8px 12px;
-    font-size: 1rem;
+    width: auto; /* Sesuaikan lebar dengan konten */
+    min-width: 120px; /* Lebar minimum untuk select */
+    padding: 0.4em; /* Padding kecil */
     border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
 .payment-method select:hover {
@@ -299,6 +327,30 @@ input, select {
     border-color: #888;
 }
 
+.payment-method select:focus {
+    outline: none;
+    border-color: #84B8C6; /* Warna border saat fokus */
+    box-shadow: 0 0 5px rgba(132, 184, 198, 0.5); /* Bayangan saat fokus */
+}
+
+.button-container {
+    margin-left: 10px; /* Jarak antara select dan tombol */
+}
+
+button {
+    background-color: #84B8C6;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Padding disesuaikan */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px; /* Ukuran font tombol */
+}
+
+button:hover {
+    background-color: #66A1B0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
 
 .footer-logo-icon {
     background-color: #DE8F5F; 
