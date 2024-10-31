@@ -3,7 +3,6 @@
 
 * {
     box-sizing: border-box;
-    /* Pastikan padding dan border termasuk dalam ukuran elemen */
 }
 
 body {
@@ -379,4 +378,52 @@ input, select {
 .search-result:hover {
     transform: none;
     box-shadow: none;
+}
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-card {
+    width: 250px; /* Sesuaikan dengan lebar yang diinginkan */
+    min-height: 350px; /* Pastikan tinggi minimum yang sama untuk semua kartu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Jarak antar kartu */
+    justify-content: center; /* Pusatkan isi kontainer */
+}
+
+.menu-card img {
+    width: 100%; /* Mengatur lebar gambar sesuai kartu */
+    height: 200px; /* Tetapkan tinggi tetap */
+    object-fit: cover; /* Mengisi frame gambar dengan crop */
+    border-radius: 8px; /* Opsional: tambahkan radius untuk membuat sudut melengkung */
+}
+
+.menu-card h3 {
+    text-align: center;
+    font-size: 1.2em; /* Sesuaikan ukuran */
+    height: 50px; /* Batasi tinggi heading agar seragam */
+}
+
+@media (max-width: 768px) {
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }

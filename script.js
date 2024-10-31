@@ -26,6 +26,38 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error loading menu:', error));
 });
 
+document.getElementById("whatsapp").addEventListener("input", function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+document.getElementById("buttonsimpaninfouser").addEventListener("click", function() {
+    let name = document.getElementById("name").value;
+    let whatsapp = document.getElementById("whatsapp").value;
+    let address = document.getElementById("address").value;
+
+    if (!name || !whatsapp || !address) {
+        alert("Silakan lengkapi semua informasi.");
+    } else if (isNaN(whatsapp)) {
+        alert("Nomor WhatsApp harus berupa angka.");
+    } else {
+        // Simpan atau lanjutkan
+    }
+});
+
+document.getElementById("searchInput").addEventListener("input", function() {
+    let query = this.value.toLowerCase();
+    let menuItems = document.querySelectorAll(".menu-item"); // Misal elemen menu item
+
+    menuItems.forEach(item => {
+        let itemName = item.textContent.toLowerCase();
+        if (itemName.includes(query)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
+});
+
 function searchMenu() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const filteredMenu = window.menuItems.filter(item => item.name.toLowerCase().includes(searchInput));
