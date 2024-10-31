@@ -121,7 +121,7 @@ function renderMenu(menuItems) {
             <div class="menu-footer">
                 <p class="price">Rp ${item.price.toLocaleString()}</p>
                 <div class="quantity-controls">
-                    <button type="button" id="btn${index}" class="btn-tambah" onclick="toggleButton(${index}, ${item.price})">Add</button>
+                    <button type="button" id="btn${index}" class="btn-tambah" onclick="toggleButton(${index}, ${item.price})">Tambah</button> <!-- Ubah di sini -->
                     <div class="qty-input" id="qtyControl${index}" style="display: none;">
                         <button type="button" class="qty-btn" onclick="changeQuantity('qty${index}', ${item.price}, -1)">-</button>
                         <input type="number" id="qty${index}" name="qty${index}" value="1" min="0" data-price="${item.price}" data-name="${item.name}" onchange="calculateTotal()">

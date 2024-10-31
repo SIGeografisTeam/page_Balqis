@@ -35,13 +35,10 @@ body {
     width: 100%;
     max-width: 1200px;
     padding: 20px;
-    background-color: #ffffff;
-    margin: 20px auto;
-    /* Menggunakan margin auto untuk membuat elemen di tengah */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    /* Tambahkan bayangan untuk efek visual */
-    border-radius: 10px;
-    /* Opsional: menambahkan border-radius untuk tampilan lebih lembut */
+    background-color: #ffffff; /* Warna latar belakang */
+    margin: 20px auto; /* Margin untuk center */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+    border-radius: 10px; /* Sudut membulat */
 }
 
 
@@ -471,6 +468,14 @@ button:hover {
     flex-wrap: wrap;
     gap: 20px; /* Jarak antar kartu */
     justify-content: center; /* Pusatkan isi kontainer */
+    padding: 20px; /* Ruang dalam */
+    background-color: #f8f8f8; /* Warna latar belakang */
+    border: 1px solid #ddd; /* Garis border */
+    margin: 20px auto; /* Margin atas dan bawah, rata tengah */
+    width: 90%; /* Atau lebar sesuai dengan container menu */
+    max-width: 600px; /* Lebar maksimum */
+    justify-content: space-between; /* Spasi antara elemen */
+    align-items: center; /* Vertically center items */
 }
 
 .menu-card img {
@@ -496,6 +501,65 @@ button:hover {
     max-width: 500px;
 }
 
+.btn-tambah {
+    background-color: green; /* Mengubah warna latar belakang menjadi hijau */
+    color: white; /* Mengubah warna teks menjadi putih */
+    border: none; /* Menghapus border default */
+    padding: 10px 15px; /* Menambahkan padding untuk tombol */
+    cursor: pointer; /* Mengubah kursor saat hover */
+    border-radius: 5px; /* Memberikan sudut membulat pada tombol */
+    transition: background-color 0.3s; /* Efek transisi saat hover */
+}
+
+.btn-tambah:hover {
+    background-color: darkgreen; /* Mengubah warna saat hover */
+}
+
+#ratingContainer {
+    background-color: #fff; /* Warna latar belakang kotak */
+    border: 1px solid #ddd; /* Garis border */
+    padding: 10px; /* Ruang dalam kotak */
+    border-radius: 8px; /* Sudut yang membulat */
+    text-align: center; /* Teks di tengah */
+    width: 100px; /* Lebar kotak */
+}
+
+#storeRating {
+    font-size: 24px; /* Ukuran font untuk rating */
+    font-weight: bold; /* Tebal */
+    color: #333; /* Warna teks */
+    margin: 0; /* Menghilangkan margin default */
+}
+
+.store-info {
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    justify-content: space-between; /* Spasi antara elemen */
+    align-items: center; /* Menjaga item agar berada di tengah vertikal */
+}
+
+.store-details {
+    flex-grow: 1; /* Membiarkan elemen ini tumbuh untuk mengisi ruang */
+    max-width: 70%; /* Membatasi lebar maksimum untuk alamat */
+}
+
+.rating-box {
+    padding: 10px; /* Ruang dalam kotak rating */
+    border: 1px solid #ddd; /* Garis border */
+    border-radius: 8px; /* Sudut membulat untuk kotak rating */
+    text-align: center; /* Teks di tengah */
+    background-color: #f8f8f8; /* Warna latar belakang kotak rating */
+    width: 100px; /* Lebar kotak rating */
+    margin-left: 20px; /* Jarak antara alamat dan rating */
+}
+
+.rating-container {
+    background-color: #f8f8f8; /* Warna latar belakang untuk rating */
+    padding: 20px; /* Ruang dalam untuk rating */
+    margin: 20px auto; /* Margin untuk center */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+    border-radius: 10px; /* Sudut membulat */
+    max-width: 1200px; /* Lebar maksimum untuk rating */
+}
 
 @media (max-width: 768px) {
     .menu-container {
