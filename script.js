@@ -5,7 +5,7 @@ const rek = "Pembayaran akan dilakukan dengan transfer ke rekening\nBCA 77508783
 
 onClick('buttonsimpaninfouser', saveUserInfo);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     checkCookies();
 
     fetch('./data/menu.json')
@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            window.menuItems = data; 
+            console.log('Data menu:', data);  // Debugging untuk melihat apakah data dimuat
+            window.menuItems = data;
             renderMenu(menuItems);
 
             const searchButton = document.getElementById('searchButton');
@@ -26,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error loading menu:', error));
 });
 
-document.getElementById("whatsapp").addEventListener("input", function(e) {
+document.getElementById("whatsapp").addEventListener("input", function (e) {
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
-document.getElementById("buttonsimpaninfouser").addEventListener("click", function() {
+document.getElementById("buttonsimpaninfouser").addEventListener("click", function () {
     let name = document.getElementById("name").value;
     let whatsapp = document.getElementById("whatsapp").value;
     let address = document.getElementById("address").value;
@@ -39,14 +40,12 @@ document.getElementById("buttonsimpaninfouser").addEventListener("click", functi
         alert("Silakan lengkapi semua informasi.");
     } else if (isNaN(whatsapp)) {
         alert("Nomor WhatsApp harus berupa angka.");
-    } else {
-        // Simpan atau lanjutkan
     }
 });
 
-document.getElementById("searchInput").addEventListener("input", function() {
+document.getElementById("searchInput").addEventListener("input", function () {
     let query = this.value.toLowerCase();
-    let menuItems = document.querySelectorAll(".menu-item"); // Misal elemen menu item
+    let menuItems = document.querySelectorAll(".menu-item");
 
     menuItems.forEach(item => {
         let itemName = item.textContent.toLowerCase();
@@ -109,11 +108,11 @@ function getCookie(cname) {
     return "";
 }
 
+// Fungsi untuk menampilkan menu
 function renderMenu(menuItems) {
     const menuGrid = document.getElementById('menuGrid');
     menuGrid.innerHTML = '';
-
-    menuItems.forEach(item => {
+    menuItems.forEach((item, index) => {
         const menuItem = document.createElement('div');
         menuItem.className = 'menu-item';
         menuItem.innerHTML = `
@@ -122,9 +121,12 @@ function renderMenu(menuItems) {
             <div class="menu-footer">
                 <p class="price">Rp ${item.price.toLocaleString()}</p>
                 <div class="quantity-controls">
-                    <button type="button" class="qty-btn" onclick="changeQuantity('qty${item.id}', ${item.price}, -1)">-</button>
-                    <input type="number" id="qty${item.id}" name="qty${item.id}" value="0" min="0" data-price="${item.price}" data-name="${item.name}" onchange="calculateTotal()">
-                    <button type="button" class="qty-btn" onclick="changeQuantity('qty${item.id}', ${item.price}, 1)">+</button>
+                    <button type="button" id="btn${index}" class="btn-tambah" onclick="toggleButton(${index}, ${item.price})">Add</button>
+                    <div class="qty-input" id="qtyControl${index}" style="display: none;">
+                        <button type="button" class="qty-btn" onclick="changeQuantity('qty${index}', ${item.price}, -1)">-</button>
+                        <input type="number" id="qty${index}" name="qty${index}" value="1" min="0" data-price="${item.price}" data-name="${item.name}" onchange="calculateTotal()">
+                        <button type="button" class="qty-btn" onclick="changeQuantity('qty${index}', ${item.price}, 1)">+</button>
+                    </div>
                 </div>
             </div>
         `;
@@ -132,13 +134,50 @@ function renderMenu(menuItems) {
     });
 }
 
-window.changeQuantity = function(id, price, delta) {
+
+// Fungsi untuk menampilkan atau menyembunyikan quantity controls ketika tombol "Add" diklik
+window.toggleButton = function (index, price) {
+    const addButton = document.getElementById(`btn${index}`);
+    const qtyControl = document.getElementById(`qtyControl${index}`);
+    const qtyInput = document.getElementById(`qty${index}`);
+    
+    if (qtyControl.style.display === 'none') {
+        addButton.style.display = 'none';
+        qtyControl.style.display = 'flex';
+        qtyInput.value = 1; // Set nilai awal menjadi 1
+        calculateTotal(); // Hitung total setelah tombol "Add" diklik
+    } else {
+        addButton.style.display = 'block';
+        qtyControl.style.display = 'none';
+        qtyInput.value = 0; // Reset quantity ke 0
+        calculateTotal(); // Hitung ulang total setelah tombol "Add" diklik lagi
+    }
+};
+
+
+window.changeQuantity = function (id, price, delta) {
     const qtyInput = document.getElementById(id);
     const currentValue = parseInt(qtyInput.value) || 0;
     qtyInput.value = Math.max(0, currentValue + delta);
     calculateTotal();
 }
 
+
+// Fungsi untuk mengubah quantity
+window.changeQuantity = function (id, price, delta) {
+    const qtyInput = document.getElementById(id);
+    const currentValue = parseInt(qtyInput.value) || 0;
+    qtyInput.value = Math.max(0, currentValue + delta);
+
+    // Jika quantity menjadi 0, kembali ke kondisi awal
+    if (qtyInput.value == 0) {
+        toggleButton(parseInt(id.replace("qty", "")), price);
+    }
+    
+    calculateTotal();
+}
+
+// Fungsi untuk menghitung total harga dan menampilkan pesanan
 function calculateTotal() {
     const inputs = document.querySelectorAll('input[type="number"]');
     let total = 0;
@@ -152,35 +191,37 @@ function calculateTotal() {
         const price = parseInt(input.getAttribute('data-price')) || 0;
         const name = input.getAttribute('data-name');
 
+        // Hanya tambahkan item ke total dan daftar pesanan jika quantity lebih dari 0
         if (quantity > 0) {
             total += quantity * price;
             orders.push(`${name} x${quantity} - Rp ${(quantity * price).toLocaleString()}`);
         }
     });
 
-    document.getElementById('totalPrice').innerText = total.toLocaleString();
+   // Perbarui total harga dan daftar pesanan di UI
+   document.getElementById('totalPrice').innerText = total.toLocaleString();
 
-    const orderList = document.getElementById('orderList');
-    orderList.innerHTML = '';
-    orders.forEach(order => {
-        const li = document.createElement('li');
-        li.innerText = order;
-        orderList.appendChild(li);
-    });
+   const orderList = document.getElementById('orderList');
+   orderList.innerHTML = '';
+   orders.forEach(order => {
+       const li = document.createElement('li');
+       li.innerText = order;
+       orderList.appendChild(li);
+   });
 
+    // Update link WhatsApp dengan pesan yang sesuai
     const whatsappLink = document.getElementById('whatsappLink');
     const message = `Saya ingin memesan:\n${orders.join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${rek}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
     whatsappLink.href = `https://wa.me/628111269691?text=${encodeURIComponent(message)}`;
 }
-
 function handleOrderSubmission(event) {
     event.preventDefault();
 
-    const paymentMethod = document.getElementById('paymentMethod').value;
+    const paymentMethod = document.getElementById('paymentSelect').value;
     const userName = getCookie("name");
     const userWhatsapp = getCookie("whatsapp");
     const userAddress = getCookie("address");
-    
+
     const inputs = document.querySelectorAll('input[type="number"]');
     let orders = [];
     let total = 0;
@@ -197,7 +238,7 @@ function handleOrderSubmission(event) {
     });
 
     let paymentInfo = paymentMethod === "Transfer" ? rek : "Pembayaran akan dilakukan dengan metode COD.";
-    
+
     const message = `Saya ingin memesan:\n${orders.map(order => `${order.name} x${order.quantity} - Rp ${order.price.toLocaleString()}`).join('\n')}\n\nTotal: Rp ${total.toLocaleString()}\n\n${paymentInfo}\n\nNama: ${userName}\nNomor WhatsApp: ${userWhatsapp}\nAlamat: ${userAddress}`;
     const whatsappUrl = `https://wa.me/628111269691?text=${encodeURIComponent(message)}`;
 
@@ -215,9 +256,9 @@ function handleOrderSubmission(event) {
         paymentMethod: paymentMethod
     };
 
-    postJSON('https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/order/' + getLastPathSegment(), 'login', '', postData, function(response) {
+    postJSON('https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/order/' + getLastPathSegment(), 'login', '', postData, function (response) {
         console.log('API Response:', response);
-    }, function(error) {
+    }, function (error) {
         console.error('Error in POST request:', error);
     });
 }
