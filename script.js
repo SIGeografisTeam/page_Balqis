@@ -132,7 +132,7 @@ function renderMenu(menuItems) {
         `;
         menuGrid.appendChild(menuItem);
     });
-}
+} 
 
 
 // Fungsi untuk menampilkan atau menyembunyikan quantity controls ketika tombol "Add" diklik
